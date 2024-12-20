@@ -1,0 +1,290 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Dokumentasi API",
+        "description": "API Documentation",
+        "contact": {
+            "email": "viko.ramayudha@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api/v1",
+            "description": "API Documentation"
+        }
+    ],
+    "paths": {
+        "/jurusan": {
+            "get": {
+                "tags": [
+                    "Jurusan"
+                ],
+                "summary": "Jurusan - Get All",
+                "description": "Mengambil Data Jurusan",
+                "operationId": "listjurusan",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "success": true,
+                                    "message": "Berhasil mengambil Data Jurusan",
+                                    "data": [
+                                        {
+                                            "id": "1",
+                                            "nama": "Mukhamad Viko Ramayudha",
+                                            "email": "ramaydha@dummy.com",
+                                            "password": "******",
+                                            "no_hp": "62813320200",
+                                            "status": "1"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/jurusan/{id}": {
+            "get": {
+                "tags": [
+                    "Jurusan"
+                ],
+                "summary": "Jurusan - Get By Id",
+                "description": "Mengambil Data Jurusan Berdasarkan ID",
+                "operationId": "listJurusanById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Masukkan ID Jurusan",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "success": true,
+                                    "message": "Berhasil mengambil Data Jurusan",
+                                    "data": {
+                                        "kd_jurusan": "1",
+                                        "jurusan": "Rekayasa Perangkat Lunak",
+                                        "kakomli": "Trie Gunanto Hadi"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data Jurusan tidak ditemukan",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "success": false,
+                                    "message": "Data Jurusan tidak ditemukan"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/jurusan/create": {
+            "post": {
+                "tags": [
+                    "Jurusan"
+                ],
+                "summary": "Jurusan - Insert",
+                "description": "Menambahkan Data Jurusan",
+                "operationId": "insertJurusan",
+                "requestBody": {
+                    "description": "Data Jurusan",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "jurusan": "Rekayasa Perangkat Lunak",
+                                "kakomli": "Trie Gunanto Hadi"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "success": true,
+                                    "message": "Berhasil menambahkan Data Jurusan",
+                                    "data": {
+                                        "kd_jurusan": "",
+                                        "jurusan": "Rekayasa Perangkat Lunak",
+                                        "kakomli": "Trie Gunanto Hadi"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "kd_jurusan": [
+                                        "The kd_jurusan field is required."
+                                    ],
+                                    "jurusan": [
+                                        "The jurusan field is required."
+                                    ],
+                                    "kakomli": [
+                                        "The kakomli field is required."
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/jurusan/update/{id}": {
+            "put": {
+                "tags": [
+                    "Jurusan"
+                ],
+                "summary": "Jurusan Update",
+                "description": "Update data Jurusan",
+                "operationId": "updateJurusan",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID Jurusan",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Request Body Description",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "jurusan": "Rekayasa Perangkat Lunak",
+                                "kakomli": "Trie Gunanto Hadi"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "success": true,
+                                    "message": "Data berhasil diubah"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/jurusan/delete": {
+            "delete": {
+                "tags": [
+                    "Jurusan"
+                ],
+                "summary": "Jurusan Delete",
+                "description": "Hapus data Jurusan",
+                "operationId": "deleteJurusan",
+                "requestBody": {
+                    "description": "ID Jurusan yang ingin dihapus",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "kd_jurusan": "809875"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "success": true,
+                                    "message": "Data berhasil dihapus"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Enter token",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
